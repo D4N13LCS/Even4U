@@ -233,7 +233,7 @@ function FormEvent(props){
         
         
         try {
-            const response = await fetch("http://localhost:3000/eventos/enviarConfirmacao", {
+            const response = await fetch("http://backend:3000/eventos/enviarConfirmacao", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({id_evento: props.id_evento, titulo: props.nome, data: data, email: email, nome: nome, cpf: cpf, localidade: localidade}),
