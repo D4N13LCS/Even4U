@@ -1,52 +1,39 @@
-version: '3.8'
+version: "3.8"
 
 services:
   frontend:
-    container_name: frontend
-    build: 
+    build:
       context: .
-      dockerfile: Docker/frontend.dockerfile
-    restart: always
-    env_file:
-      - ./backend/.env
+      dockerfile: Docker/Dockerfile.frontend
     ports:
-      - "5173:5173"
-    networks:
-      - minha-rede
+      - "3000:80"
     depends_on:
       - backend
-      
-  backend: 
-    container_name: backend
-    build: 
+
+  backend:
+    build:
       context: .
-      dockerfile: Docker/backend.dockerfile
-    restart: always
-    env_file:
-      - ./backend/.env
+      dockerfile: Docker/Dockerfile.backend
     ports:
-      - "3000:3000"
-    networks:
-      - minha-rede
+      - "5000:5000"
     depends_on:
       - db
-  
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root
+      DB_NAME: meu_banco
+
   db:
-    container_name: db
-    build: 
-      context: ./Docker
-      dockerfile: db.dockerfile
+    image: mysql:8
     restart: always
-    env_file:
-      - ./backend/.env
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: meu_banco
     ports:
       - "3306:3306"
     volumes:
-      - ./Docker/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      - minha-rede
-    
-networks:
-  minha-rede:
-    driver: bridge
+      - db_data:/var/lib/mysql
 
+volumes:
+  db_data:
