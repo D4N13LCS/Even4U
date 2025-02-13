@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>confirmação</title>
+    <link rel="stylesheet" href="/css/estiloEstatico.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=calendar_monthlocation_onchevron_rightchevron_left" />
+</head>
+<body>
+    <main>
+        <div id="containerConfirmacao">
+            <h1>Nome do evento</h1>
+            <div id="texto">
+                
+                <div class="campo">
+                    <span class='material-symbols-outlined'>
+                        calendar_month
+                    </span>
+                    <div class="fundoInput"><input value="28/02/2025" type="text" readonly></div>
+                </div>
+                <div class="campo">
+                    <span class='material-symbols-outlined'>
+                        location_on
+                    </span>
+                    <div class="fundoInput"><input value="Rio de Janeiro - RJ" type="text" readonly></div>
+                </div>
+            </div>
+            <div>
+                <button class="btn" type="button">Confirmar Inscrição</button>
+                <button class="btn" type="button">Cancelar Inscrição</button>
+            </div>
+        </div>
+    </main>
+    <script>
+        async function confirmar(id){
+            try {
+            const response = await fetch('http://localhost:3000/eventos/confirmarInscricao', {
+                method: 'PATCH',
+                body: JSON.stringify({id: id}),
+                headers: {'Content-Type': 'application/json'}
+            })
+
+            const dados = await response.json();
+            alert(dados.message);
+            } catch (error) {
+                console.log(error)
+            }finally{
+                location.href = 'http://localhost:5173/'
+            }
+        }
+        
+        async function cancelar(id){
+            try {
+            const response = await fetch('http://localhost:3000/eventos/cancelarInscricao', {
+                method: 'DELETE',
+                body: JSON.stringify({id: id}),
+                headers: {'Content-Type': 'application/json'}
+            })
+
+            const dados = await response.json();
+            alert(dados.message);
+            } catch (error) {
+                console.log(error)
+            }finally{
+                location.href = 'http://localhost:5173/'
+            }
+        }
+
+        async function listar_especifico(id){
+            const titulo = document.querySelector('#containerConfirmacao h1');
+            const data = document.querySelectorAll('.campo input')[0];
+            const local = document.querySelectorAll('.campo input')[1];
+            try {
+                const response = await fetch(`http://localhost:3000/eventos/listarEspecifico/${id}`)
+
+                const dados = await response.json();
+                titulo.innerText = dados.result[0].titulo
+                data.value = new Date(dados.result[0].data_evento).toLocaleDateString(); 
+                local.value = `${dados.result[0].cidade} - ${dados.result[0].estado}`
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        
+        const id_inscricao = <%= id %> ;
+
+        listar_especifico(id_inscricao);
+        const btn_confirmar = document.querySelectorAll('.btn')[0];
+        const btn_cancelar = document.querySelectorAll('.btn')[1];
+        
+
+        btn_confirmar.addEventListener('click', ()=>{
+            confirmar(id_inscricao);
+        })
+
+        btn_cancelar.addEventListener('click', ()=>{
+            cancelar(id_inscricao);
+        })
+    </script>
+</body>
+</html>

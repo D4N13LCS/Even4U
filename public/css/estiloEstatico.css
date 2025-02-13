@@ -1,0 +1,199 @@
+*{
+    text-decoration: none;
+    list-style-type: none;
+
+    --cor1: #060273;
+    --cor2: #012340;
+    --cor3: #025E73;
+    --cor4: #18D9C5;
+    --cor5: #0D0D0D;
+
+    margin: 0%;
+    padding:0%;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+#containerConfirmacao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+    padding: 2em 6em 2em 6em;
+    height: fit-content;
+    border-radius: 5px;
+    box-shadow: 1px 1.5px 5px 2px rgba(0, 0, 0, 0.164);
+    background-color: var(--cor5);
+}
+
+h1{
+    text-align: center;
+}
+
+#texto{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    color: white;
+}
+
+span{
+    color: white;
+}
+
+.campo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .4em;
+}
+
+.campo input{
+    
+    border: none;
+    border-radius: 4px;
+    padding: 3px;
+    background-color: transparent;
+    color: white;
+}
+
+.campo input:focus{
+    outline: none;
+}
+
+.fundoInput{
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.btnContainer{
+    display: flex;
+    gap: 1em;
+}
+
+.btn{
+    padding: 5px;
+    color: white;
+    background-color: var(--cor4);
+    border: 1px solid black;
+    border-radius: 4px;
+    
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: var(--cor3);
+}
+
+@media (max-width: 360px){
+    #containerConfirmacao{
+        width: 5em;
+    }
+
+    h1{
+        font-size: 1.25em;
+        width: 7em;
+    }
+
+    .campo span{
+        font-size: 20px;
+    }
+
+    .btn{
+        width: 8em;
+    }
+}
+
+@media (min-width: 361px) AND (max-width: 500px){
+    #containerConfirmacao{
+        width: 5em;
+    }
+
+    h1{
+        font-size: 1.25em;
+        width: 7em;
+    }
+
+    .campo span{
+        font-size: 20px;
+    }
+
+    .btn{
+        width: 8em;
+    }
+}
+@media (min-width: 501px) AND (max-width: 768px){
+    #containerConfirmacao{
+        width: 12.5em;
+    }
+
+    h1{
+        font-size: 1.5em;
+        width: 12.5em;
+    }
+
+    .campo span{
+        font-size: 22px;
+    }
+
+    .btn{
+        width: 10em;
+    }
+}
+@media (min-width: 769px) AND (max-width: 1024px){
+    #containerConfirmacao{
+        width: 15em;
+    }
+    
+    h1{
+        font-size: 1.7em;
+        width: 17em;
+    }
+
+    .campo span{
+        font-size: 24px;
+    }
+
+    .btn{
+        width: 10em;
+    }
+}
+@media (min-width: 1025px) AND (max-width: 1300px){
+    #containerConfirmacao{
+        width: 18em;
+    }
+
+    h1{
+        font-size: 1.9em;
+        width: 20em;
+    }
+
+    .campo span{
+        font-size: 26px;
+    }
+
+    .btn{
+        width: 10em;
+    }
+}
+@media (min-width: 1301px){
+    #containerConfirmacao{
+        width: 20em;
+    }
+
+    h1{
+        font-size: 2.1em;
+        width: 22em;
+    }
+
+    .campo span{
+        font-size: 26px;
+    }
+}
+
