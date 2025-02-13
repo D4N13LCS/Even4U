@@ -31,21 +31,21 @@ services:
     depends_on:
       - db
   
-db:
-  container_name: db
-  build: 
-    context: ./Docker
-    dockerfile: db.dockerfile
-  restart: always
-  env_file:
-    - ./backend/.env 
-  ports:
-    - "3306:3306"
-  volumes:
-    - db_data:/var/lib/mysql 
-    - ./Docker/sql:/docker-entrypoint-initdb.d  
-  networks:
-    - minha-rede
+  db:
+    container_name: db
+    build: 
+      context: ./Docker
+      dockerfile: db.dockerfile
+    restart: always
+    env_file:
+      - ./backend/.env 
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql 
+      - ./Docker/sql:/docker-entrypoint-initdb.d  
+    networks:
+      - minha-rede
 
 volumes:
   db_data:
