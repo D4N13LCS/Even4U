@@ -4,7 +4,7 @@ services:
   frontend:
     container_name: frontend
     build: 
-      context: ..
+      context: .
       dockerfile: Docker/frontend.dockerfile
     restart: always
     env_file:
@@ -19,7 +19,7 @@ services:
   backend: 
     container_name: backend
     build: 
-      context: ..
+      context: .
       dockerfile: Docker/backend.dockerfile
     restart: always
     env_file:
