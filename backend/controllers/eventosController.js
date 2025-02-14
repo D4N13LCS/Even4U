@@ -148,7 +148,7 @@ class Eventos{
         db.getConnection((err, conex)=>{
             if(err){return res.status(500).send({err})}
 
-            conex.query('update inscricoes set is_confirmed = TRUE  where id = (?)', [req.body.id], (err, result)=>{
+            conex.query('update inscricoes set is_confirmed = 1  where id = (?)', [req.body.id], (err, result)=>{
                 conex.release();
                 if(err){return res.status(500).send({err})}
 

@@ -10,7 +10,7 @@ app.use(cors());
 
 app.set('view engine', 'ejs');
 app.set('pages', path.join(__dirname, 'pages'));
-// app.use(express.static(path.join(__dirname, '../dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
