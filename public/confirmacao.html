@@ -37,7 +37,7 @@
     <script>
         async function confirmar(id){
             try {
-            const response = await fetch('http://localhost:3000/eventos/confirmarInscricao', {
+                const response = await fetch('http://localhost:3000/eventos/confirmarInscricao', {
                 method: 'PATCH',
                 body: JSON.stringify({id: id}),
                 headers: {'Content-Type': 'application/json'}
@@ -50,7 +50,8 @@
             }finally{
                 location.href = 'http://localhost:5173/'
             }
-        }
+            }
+        
         
         async function cancelar(id){
             try {

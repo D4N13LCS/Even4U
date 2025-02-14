@@ -9,9 +9,7 @@ const ContainerCarrossel = styled.div`
     gap: 1em;
     margin: 20px  0px;
 `
-
-
-
+    
 const CarrosselContent = styled.div`
     display: flex;
     justify-content: space-around;
@@ -199,7 +197,7 @@ function Carrossel(){
 
     async function listar_vagas() {
         try{
-            const response = await fetch('http://backend:3000/eventos/listar')
+            const response = await fetch('http://localhost:3000/eventos/listar')
             const data = await response.json()
             setEventos(data.result);
             ajustarCarrossel();
