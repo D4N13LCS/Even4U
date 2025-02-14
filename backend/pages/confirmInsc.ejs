@@ -36,7 +36,7 @@
     <script>
         async function confirmar(id){
             try {
-            const response = await fetch('http://backend:3000/eventos/confirmarInscricao', {
+            const response = await fetch('http://localhost:3000/eventos/confirmarInscricao', {
                 method: 'PATCH',
                 body: JSON.stringify({id: id}),
                 headers: {'Content-Type': 'application/json'}
@@ -53,7 +53,7 @@
         
         async function cancelar(id){
             try {
-            const response = await fetch('http://backend:3000/eventos/cancelarInscricao', {
+            const response = await fetch('http://localhost:3000/eventos/cancelarInscricao', {
                 method: 'DELETE',
                 body: JSON.stringify({id: id}),
                 headers: {'Content-Type': 'application/json'}
@@ -73,7 +73,7 @@
             const data = document.querySelectorAll('.campo input')[0];
             const local = document.querySelectorAll('.campo input')[1];
             try {
-                const response = await fetch(`http://backend:3000/eventos/listarEspecifico/${id}`)
+                const response = await fetch(`http://localhost:3000/eventos/listarEspecifico/${id}`)
 
                 const dados = await response.json();
                 titulo.innerText = dados.result[0].titulo
