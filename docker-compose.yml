@@ -43,7 +43,8 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql 
-      - ./Docker/sql:/docker-entrypoint-initdb.d  
+      - ./Docker/sql:/docker-entrypoint-initdb.d
+      - ./Docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
     networks:
       - minha-rede
 
