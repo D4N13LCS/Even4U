@@ -1,45 +1,198 @@
-# Sobre
+# Event Management System
 
-Even4U é uma plataforma de eventos gratuitos que possui como objetivo trazer acessibilidade à cultura àqueles em vulnerabilidade financeira. Os eventos são totalmente gratuitos e dispõem todas as informações necessárias sobre seu funcionamento.
+A full-stack event management system that allows users to register for events and confirm their participation via email verification.
 
-# Funcionamento
+This project focuses on building a scalable backend using Node.js, integrating relational databases, and handling real-world workflows such as email confirmation and user validation.
 
-Como a um dos objetivo da plataforma é praticidade, não é necessário login para se inscrever, basta clicar em "Inscrever-se" e preencher um formulário.
+---
 
-![even4uDestaque](https://github.com/user-attachments/assets/34d92222-4a54-4338-a47c-4b9165c02215)
+## 📸 Screenshots
 
+### 🖥️ Application Interface
 
-## Formulário
+![Home Page](./docs/images/home.png)
 
-![even4uForms](https://github.com/user-attachments/assets/6d7b37c6-01ce-49a8-ab6d-ed3d760c06f6)
+### 📝 Event Registration
 
+![Registration](./docs/images/register.png)
 
-Após preencher o formulário, um email de confirmação será enviado para o email fornecido.
+### 📧 Email Confirmation Flow
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Gmail2020.logo.png" height="60"/> 
+![Email Flow](./docs/images/email-flow.png)
 
-OBS: Não é possível confirmar através do celular, por isso, abra o email no seu computador. Caso contrário, o link gerará um erro.
+### ✅ Confirmation Page
 
-## Confirmação
+![Confirmation](./docs/images/confirmation.png)
 
-![even4uConf](https://github.com/user-attachments/assets/244a0939-53db-400f-b201-12aeef17138f)
+---
 
-Após clicar no link e ser redirecionado(a) para a página de confirmação, basta confirmar ou cancelar sua inscrição. Independentemente da escolha, você será redirecionado(a) para a home do site.
+## 🚀 Features
 
-# Teste você mesmo
+* Event listing and filtering
+* Event registration with user data
+* Email confirmation using secure token (JWT)
+* Confirmation and cancellation of registrations
+* Backend structured with layered architecture
+* Full containerization using Docker
 
-<img src="https://1000logos.net/wp-content/uploads/2021/11/Docker-Logo.png" height="120"/>
+---
 
-Para testar essa aplicação, é necessário possuir o docker instalado e as seguintes portas disponíveis: 5173, 3000 e 3306.
+## 🛠️ Tech Stack
 
-Após o docker instalado, faça o seguinte: 
+### Backend
 
-- clone esse repositório na sua máquina local por meio do seguinte comando: <code> git clone https://github.com/D4N13LCS/Even4U </code>
+* Node.js (Express)
+* MySQL
+* JWT (authentication & validation)
+* Nodemailer (email service)
+* Google OAuth2 (secure email integration)
 
-- crie um arquivo .env no diretório Even4U/backend da seguinte forma: 
+### Frontend
 
-![even4uEnv](https://github.com/user-attachments/assets/0d61ad06-48a8-4a58-9811-6defe3bcd018)
+* React.js
 
-- dentro do diretório onde os arquivos foram clonados, utilize o comando: <code> docker compose up --build </code>
+### DevOps
 
-- Por último, acesse http://localhost:5173/ no seu navegador.
+* Docker
+* Docker Compose
+
+---
+
+## 🧠 Architecture Overview
+
+The backend follows a **layered architecture**, separating responsibilities into:
+
+* **Controllers** → Handle HTTP requests and responses
+* **Database Layer** → MySQL connection via connection pool
+* **Services (implicit logic)** → Business rules inside controllers
+
+This structure improves:
+
+* Maintainability
+* Scalability
+* Code organization
+
+---
+
+## 🔐 Email Confirmation Flow
+
+1. User registers for an event
+2. Backend generates a JWT token (valid for 1 hour)
+3. Token is stored in the database
+4. Email is sent using Gmail OAuth2 via Nodemailer
+5. User clicks confirmation link
+6. Backend validates token and confirms registration
+
+---
+
+## 📡 API Endpoints
+
+### Events
+
+* `GET /eventos/listar` → List all events
+* `GET /eventos/listarEspecifico/:id` → Get specific event
+
+### Registration
+
+* `POST /eventos/enviarConfirmacao` → Register user and send confirmation email
+* `GET /eventos/ExibirInscricao/:id` → Validate token and render confirmation page
+* `PATCH /eventos/confirmarInscricao` → Confirm registration
+* `DELETE /eventos/cancelarInscricao` → Cancel registration
+
+---
+
+## 🐳 Running the Project (Docker)
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/event-management-system.git
+cd event-management-system
+```
+
+### 2. Configure environment variables
+
+Create a `.env` file inside `/backend`:
+
+```env
+MYSQL_HOST=db
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATABASE=eventos_db
+MYSQL_PORT=3306
+
+SECRET=your_jwt_secret
+
+CLIENT_ID=your_google_client_id
+CLIENT_SECRET=your_google_client_secret
+REFRESH_TOKEN=your_refresh_token
+```
+
+---
+
+### 3. Run with Docker Compose
+
+```bash
+docker-compose up --build
+```
+
+---
+
+### 4. Access the application
+
+* Frontend → http://localhost:5173
+* Backend → http://localhost:3000
+
+---
+
+## 🗄️ Database
+
+* MySQL 8 containerized
+* Automatic schema initialization via `/docker-entrypoint-initdb.d`
+* UTF-8 support configured
+
+---
+
+## 📦 Project Structure
+
+```
+backend/
+ ├── controllers/
+ ├── views/
+ ├── db.js
+ ├── app.js
+ ├── server.js
+
+Docker/
+ ├── backend.dockerfile
+ ├── frontend.dockerfile
+ ├── db.dockerfile
+
+docker-compose.yml
+```
+
+---
+
+## 🎯 Key Highlights
+
+* Real-world workflow: email confirmation system
+* Secure token validation with JWT
+* Integration with external services (Google OAuth2)
+* Fully containerized environment
+* Backend structured for scalability
+
+---
+
+## 📌 Future Improvements
+
+* Add unit and integration tests
+* Implement service layer abstraction
+* Add authentication (login system)
+* Improve error handling and logging
+* Deploy to cloud (AWS / Azure / GCP)
+
+---
+
+## 👨‍💻 Author
+
+Daniel Cardoso da Silva
+Software Engineer (Full Stack)
