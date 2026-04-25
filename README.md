@@ -10,19 +10,11 @@ This project focuses on building a scalable backend using Node.js, integrating r
 
 ### 🖥️ Application Interface
 
-![Home Page](./docs/images/home.png)
+![Home Page](./docs/images/home_even4u.png)
 
 ### 📝 Event Registration
 
-![Registration](./docs/images/register.png)
-
-### 📧 Email Confirmation Flow
-
-![Email Flow](./docs/images/email-flow.png)
-
-### ✅ Confirmation Page
-
-![Confirmation](./docs/images/confirmation.png)
+![Registration](./docs/images/image.png)
 
 ---
 
